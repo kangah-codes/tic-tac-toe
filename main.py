@@ -27,30 +27,17 @@ def check_for_win(board_list):
 
 def all_horizontal(items):
 # All horizontal
-	if items[0] == items[1] == items[2]:
-		return True
-	if items[3] == items[4] == items[5]:
-		return True
-	if items[6] == items[7] == items[7]:
-		return True
-	else:
-		return False
-
+	return items[0] == items[1] == items[2] or items[3] == items[4] == items[5] items[6] == items[7] == items[7]
+	
 def all_vertical(items):
 	# All vertical
-	if items[0] == items[5] == items[6]  or items[1] == items[4] == items[7] or items[2] == items[3] == items[8]:
-		return True
-	else:
-		return False
+	return items[0] == items[5] == items[6]  or items[1] == items[4] == items[7] or items[2] == items[3] == items[8]:
 
 def all_diagonal(items):
 	global winner_diagonal, winner_diagonal, winner_vertical
 	global all_diagonal, all_diagonal, all_vertical
 	# All diagonal
-	if items[0] == items[4] == items[8] or items[2] == items[4] == items[6]:
-		return True
-	else:
-		return False
+	return items[0] == items[4] == items[8] or items[2] == items[4] == items[6]
 
 if all_horizontal(boardList):
 	for i in range(0, 7, 3):
