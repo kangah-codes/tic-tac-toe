@@ -27,7 +27,7 @@ def check_for_win(board_list):
 
 def all_horizontal(items):
 # All horizontal
-	return items[0] == items[1] == items[2] or items[3] == items[4] == items[5] items[6] == items[7] == items[7]
+	return items[0] == items[1] == items[2] or items[3] == items[4] == items[5] or items[6] == items[7] == items[7]
 	
 def all_vertical(items):
 	# All vertical
@@ -38,56 +38,6 @@ def all_diagonal(items):
 	global all_diagonal, all_diagonal, all_vertical
 	# All diagonal
 	return items[0] == items[4] == items[8] or items[2] == items[4] == items[6]
-
-if all_horizontal(boardList):
-	for i in range(0, 7, 3):
-		if boardList[i] == 'X' and boardList[i] == boardList[i+1] == boardList[i+2]:
-			winner_horizontal = 'X'
-			break
-		elif boardList[i] == '0' and boardList[i] == boardList[i+1] == boardList[i+2]:
-			winner_horizontal = '0'
-			break
-
-if all_vertical(boardList):
-	for i in range(0, 3, 1):
-		if i == 0:
-			if boardList[i] == 'X' and boardList[i] == boardList[i+5] == boardList[i+6]:
-				winner_vertical = 'X'
-				break
-			elif boardList[i] == '0' and boardList[i] == boardList[i+5] == boardList[i+6]:
-				winner_vertical = '0'
-				break
-		elif i == 1:
-			if boardList[i] == 'X' and boardList[i] == boardList[i+3] == boardList[i+6]:
-				winner_vertical = 'X'
-				break
-			elif boardList[i] == '0' and boardList[i] == boardList[i+3] == boardList[i+6]:
-				winner_vertical = '0'
-				break
-		elif i == 2:
-			if boardList[i] == 'X' and boardList[i] == boardList[i+1] == boardList[i+6]:
-				winner_vertical = 'X'
-				break
-			elif boardList[i] == '0' and boardList[i] == boardList[i+1] == boardList[i+6]:
-				winner_vertical = '0'
-				break
-
-if all_diagonal(boardList):
-	for i in range(0, 3, 2):
-		if i == 0:
-			if boardList[i] == 'X' and boardList[i] == boardList[i+4] == boardList[i+8]:
-				winner_diagonal = 'X'
-				break
-			elif boardList[i] == '0' and boardList[i] == boardList[i+4] == boardList[i+8]:
-				winner_diagonal = '0'
-				break
-		if i == 2:
-			if boardList[i] == 'X' and boardList[i] == boardList[i+2] == boardList[i+4]:
-				winner_diagonal = 'X'
-				break
-			elif boardList[i] == '0' and boardList[i] == boardList[i+2] == boardList[i+4]:
-				winner_diagonal = '0'
-				break
 
 def start_game():
 	global turn, p1_sign, p2_sign, start, p1, p2
@@ -141,7 +91,7 @@ def play_game():
 		except IndexError:
 			cprint('That number is not in the board!', 'red')
 
-		if all_horizontal(boardList):
+		if all_horizontal(boardList) or all_vertical(boardList) or all_diagonal(boardList):
 			if turn == 'p1':
 				cprint('{} has won!'.format(p2), 'red')
 				draw_board(boardList)
@@ -153,44 +103,6 @@ def play_game():
 					gamePlay = False
 			else:
 				cprint('{} has won!'.format(p1), 'red')
-				draw_board(boardList)
-				retry = input('Do you want to retry?(yes/no): ')
-				if retry == 'yes':
-					replay = True
-					continue
-				else:
-					gamePlay = False
-		elif all_vertical(boardList):
-			if turn == 'p1':
-				cprint('{} has won!'.format(p2), 'red')
-				draw_board(boardList)
-				retry = input('Do you want to retry?(yes/no): ')
-				if retry == 'yes':
-					replay = True
-					continue
-				else:
-					gamePlay = False
-			else:
-				cprint('{} has won!'.format(p1), 'red')
-				draw_board(boardList)
-				retry = input('Do you want to retry?(yes/no): ')
-				if retry == 'yes':
-					replay = True
-					continue
-				else:
-					gamePlay = False
-		elif all_diagonal(boardList):
-			if turn == 'p1':
-				cprint('{} has won!'.format(p2), 'red')
-				draw_board(boardList)
-				retry = input('Do you want to retry?(yes/no): ')
-				if retry == 'yes':
-					replay = True
-					continue
-				else:
-					gamePlay = False
-			else:
-				print('{} has won!'.format(p1), 'red')
 				draw_board(boardList)
 				retry = input('Do you want to retry?(yes/no): ')
 				if retry == 'yes':
