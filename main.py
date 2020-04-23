@@ -22,9 +22,6 @@ def draw_board(items):
 def add_to_board(board_list, item, position):
 	board_list[position] = item
 
-def check_for_win(board_list):
-	items = [x for x in board_list]
-
 def all_horizontal(items):
 # All horizontal
 	return items[0] == items[1] == items[2] or items[3] == items[4] == items[5] or items[6] == items[7] == items[7]
